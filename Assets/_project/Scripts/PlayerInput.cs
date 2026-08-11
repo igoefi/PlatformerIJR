@@ -1,0 +1,46 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerInput : MonoBehaviour
+{
+    private InputSystem_Actions _input;
+
+    public delegate void JumpButton();
+    public static event JumpButton JumpPressed;
+    public static event JumpButton JumpUnpress;
+
+    public delegate void MovementButtons(Vector2 direction);
+    public static event MovementButtons MovementPressed;
+    
+    private void Awake()
+    {
+        _input = new();
+        _input.Enable();    
+    }
+    
+    private void OnEnable()
+    {
+        _input.Player.Jump.performed += PressJump;
+        _input.Player.Jump.canceled += UnpressJump;
+        _input.Player.Move.performed += PressMovement;
+        _input.Player.Move.canceled += PressMovement;
+    }
+
+    private void OnDisable()
+    {
+        _input.Player.Jump.performed -= PressJump;
+        _input.Player.Jump.canceled -= UnpressJump;
+        _input.Player.Move.performed -= PressMovement;
+        _input.Player.Move.canceled -= PressMovement;
+    }
+    
+    private void PressJump(InputAction.CallbackContext _) =>
+        JumpPressed?.Invoke();
+
+    private void UnpressJump(InputAction.CallbackContext _) =>
+        JumpUnpress?.Invoke();
+    
+    private void PressMovement(InputAction.CallbackContext context) =>
+        MovementPressed?.Invoke(context.ReadValue<Vector2>());
+}
