@@ -14,8 +14,7 @@ public class PlayerCoinHandler : MonoBehaviour
         if (other.TryGetComponent(out Coin coin) == false)
             return;
         
-        Debug.Log(1);
-        coin.GetCountAndDestroy(out int addedCoins);
+        int addedCoins = coin.GetCountAndDestroy();
         _coins += addedCoins;
         OnGetCoins?.Invoke(addedCoins);
     }
