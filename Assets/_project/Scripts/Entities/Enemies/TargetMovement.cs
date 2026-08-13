@@ -9,7 +9,7 @@ public class TargetMovement : MonoBehaviour
     public event Action StartMovingEvent;
     
     [SerializeField] private float _normalMaxDistance;
-    [SerializeField] private EnemyHandler _handler;
+    [SerializeField] private Enemy _handler;
     
     private float _needMaxDistance;
     private bool _isOnTarget;

@@ -3,32 +3,32 @@ using UnityEngine;
 
 [RequireComponent(typeof(EnemyPathTracingHandler),
     typeof(EnemyVision),
-    typeof(EnemyMovementHandler))]
-public class MeleeEnemyHandler : EnemyHandler
+    typeof(EnemyMovement))]
+public class MeleeEnemy : Enemy
 {
     private EnemyPathTracingHandler _pathTracingHandler;
-    private EnemyMovementHandler  _movementHandler;
+    private EnemyMovement  _movement;
     private EnemyVision _vision;
-    
-    void Awake()
+
+    private void Awake()
     {
         StatsHandler = GetComponent<StatsHandler>();
         _pathTracingHandler = GetComponent<EnemyPathTracingHandler>();
         _vision = GetComponent<EnemyVision>();
-        _movementHandler = GetComponent<EnemyMovementHandler>();
+        _movement = GetComponent<EnemyMovement>();
     }
 
     private void OnEnable()
     {
-        _movementHandler.MovingEvent += StartMoving;
-        _movementHandler.StopEvent += StopMoving;
+        _movement.MovingEvent += StartMoving;
+        _movement.StopEvent += StopMoving;
         _vision.SeePlayerEvent += SeePLayer;
     }
 
     private void OnDisable()
     {
-        _movementHandler.MovingEvent -= StartMoving;
-        _movementHandler.StopEvent -= StopMoving;
+        _movement.MovingEvent -= StartMoving;
+        _movement.StopEvent -= StopMoving;
         _vision.SeePlayerEvent -= SeePLayer;
     }
 

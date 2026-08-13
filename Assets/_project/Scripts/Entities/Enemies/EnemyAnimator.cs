@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator),  typeof(EnemyHandler))]
-public class EnemyAnimationHandler : MonoBehaviour
+[RequireComponent(typeof(Animator),  typeof(Enemy))]
+public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private string _speedVariable;
     [SerializeField] private string _attackVariable;
-    [SerializeField] EnemyHandler _handler;
+    [SerializeField] Enemy _handler;
     
     private int _speedHash;
     private int _attackHash;

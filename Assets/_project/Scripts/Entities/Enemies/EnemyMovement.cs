@@ -4,16 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(TargetMovement), 
     typeof(EnemyPathTracingHandler), 
     typeof(FollowPlayerHandler))]
-public class EnemyMovementHandler : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
-    public event Action StopEvent;
-    public event Action MovingEvent;
-
-    [SerializeField] private EnemyHandler _handler;
+    [SerializeField] private Enemy _handler;
     
     private TargetMovement _targetMovement;
     private EnemyPathTracingHandler  _pathTracingHandler;
     private FollowPlayerHandler _followPlayerHandler;
+    
+    public event Action StopEvent;
+    public event Action MovingEvent;
 
     private void Awake()
     {
