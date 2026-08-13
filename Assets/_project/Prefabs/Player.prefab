@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5658427923169892428}
   - component: {fileID: 5238408381590983327}
   - component: {fileID: 7519258306887512068}
+  - component: {fileID: 3736767353865839213}
+  - component: {fileID: 8042254269489286065}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -208,10 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5ffe0abe4529542bcbda28217c55ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovemet
-  _speed: 10
-  _jumpForce: 14
-  _fallGravityScale: 10
-  _normalGravityScale: 4
   _groundAngle: 20
 --- !u!114 &5238408381590983327
 MonoBehaviour:
@@ -238,3 +236,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd04dcb208e3a6429cf18dbc3ef44bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCoinHandler
+--- !u!114 &3736767353865839213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6175110939773628723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6874973538c0cc04585d1833ff37e766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesRotator
+--- !u!114 &8042254269489286065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6175110939773628723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22983298a7df1c40b40d2ece3d1a62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsHandler
+  _stats:
+    Speed: 10
+    JumpForce: 14
+    FallGravityScale: 10
+    NormalGravityScale: 4
+    MaxHealth: 100
+    Health: 100
+    AttackDamage: 5
+    AttackCooldown: 2

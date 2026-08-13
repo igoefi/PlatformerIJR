@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PlayerCoinHandler : MonoBehaviour
 {
-    public delegate void GetCoinsDelegate(int addedCoins);
-    public event GetCoinsDelegate OnGetCoins;
+    public event Action<int> OnGetCoins;
     
     private int _coins;
     

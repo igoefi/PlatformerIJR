@@ -6,12 +6,9 @@ public class PlayerInput : MonoBehaviour
 {
     private InputSystem_Actions _input;
 
-    public delegate void JumpButton();
-    public static event JumpButton JumpPressed;
-    public static event JumpButton JumpUnpress;
-
-    public delegate void MovementButtons(Vector2 direction);
-    public static event MovementButtons MovementPressed;
+    public event Action JumpPressed;
+    public event Action JumpUnpress;
+    public event Action<Vector2> MovementPressed;
     
     private void Awake()
     {

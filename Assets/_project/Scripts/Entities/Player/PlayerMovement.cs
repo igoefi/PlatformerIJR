@@ -2,23 +2,25 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D),
+    typeof(PlayerInput),
+    typeof(StatsHandler))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _jumpForce;
-    [SerializeField] private float _fallGravityScale;
-    [SerializeField] private float _normalGravityScale;
     [SerializeField] private float _groundAngle;
     
     private bool _isCanJump = true;
     private float _xVelocity;
     private Rigidbody2D _body;
-
+    private PlayerInput _playerInput;
+    private StatsHandler _stats;
+    
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
-        _body.gravityScale = _fallGravityScale;
+        _playerInput = GetComponent<PlayerInput>();
+        _stats = GetComponent<StatsHandler>();
+        _body.gravityScale = _stats.FallGravityScale;
     }
 
     private void FixedUpdate()
@@ -28,16 +30,16 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnEnable()
     {
-        PlayerInput.JumpPressed += Jump;
-        PlayerInput.MovementPressed += SetVelocity;
-        PlayerInput.JumpUnpress += Fall;
+        _playerInput.JumpPressed += Jump;
+        _playerInput.MovementPressed += SetVelocity;
+        _playerInput.JumpUnpress += Fall;
     }
 
     private void OnDisable()
     {
-        PlayerInput.JumpPressed -= Jump;
-        PlayerInput.MovementPressed -= SetVelocity;
-        PlayerInput.JumpUnpress -= Fall;
+        _playerInput.JumpPressed -= Jump;
+        _playerInput.MovementPressed -= SetVelocity;
+        _playerInput.JumpUnpress -= Fall;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -55,15 +57,15 @@ public class PlayerMovement : MonoBehaviour
         if(_isCanJump == false) return;
         
         _isCanJump = false;
-        _body.gravityScale = _normalGravityScale;
-        _body.AddForceY(_jumpForce, ForceMode2D.Impulse);
+        _body.gravityScale = _stats.NormalGravityScale;
+        _body.AddForceY(_stats.JumpForce, ForceMode2D.Impulse);
     }
 
     private void Fall() =>
-        _body.gravityScale = _fallGravityScale;
+        _body.gravityScale = _stats.FallGravityScale;
 
     private void SetVelocity(Vector2 direction)
     {
-        _xVelocity = direction.x * _speed;
+        _xVelocity = direction.x * _stats.Speed;
     }
 }
