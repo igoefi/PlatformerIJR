@@ -15,4 +15,5 @@ public class StatsConfig
     public float Health;
     public float AttackDamage;
     public float AttackCooldown;
+    public float AttackDistanse;
 }

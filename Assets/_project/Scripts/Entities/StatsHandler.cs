@@ -17,6 +17,7 @@ public class StatsHandler : MonoBehaviour, IDamagable
     public float JumpForce { get { return _stats.JumpForce; } }
     public float FallGravityScale { get { return _stats.FallGravityScale; } }
     public float NormalGravityScale { get { return _stats.NormalGravityScale; } }
+    public float AttackDistance { get { return _stats.AttackDistanse; } }
     
     public void TakeDamage(float damage)
     {

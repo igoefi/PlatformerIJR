@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     private InputSystem_Actions _input;
 
+    public event Action AttackPressed;
     public event Action JumpPressed;
     public event Action JumpUnpress;
     public event Action<Vector2> MovementPressed;
@@ -22,6 +23,7 @@ public class PlayerInput : MonoBehaviour
         _input.Player.Jump.canceled += UnpressJump;
         _input.Player.Move.performed += PressMovement;
         _input.Player.Move.canceled += PressMovement;
+        _input.Player.Attack.performed += PressAttack;
     }
 
     private void OnDisable()
@@ -30,6 +32,7 @@ public class PlayerInput : MonoBehaviour
         _input.Player.Jump.canceled -= UnpressJump;
         _input.Player.Move.performed -= PressMovement;
         _input.Player.Move.canceled -= PressMovement;
+        _input.Player.Attack.performed -= PressAttack;
     }
     
     private void PressJump(InputAction.CallbackContext _) =>
@@ -40,4 +43,7 @@ public class PlayerInput : MonoBehaviour
     
     private void PressMovement(InputAction.CallbackContext context) =>
         MovementPressed?.Invoke(context.ReadValue<Vector2>());
+    
+    private void PressAttack(InputAction.CallbackContext _) =>
+        AttackPressed?.Invoke();
 }

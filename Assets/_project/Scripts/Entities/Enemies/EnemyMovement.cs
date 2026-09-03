@@ -3,14 +3,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(TargetMovement), 
     typeof(EnemyPathTracingHandler), 
-    typeof(FollowPlayerHandler))]
+    typeof(PlayerFollower))]
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Enemy _handler;
     
     private TargetMovement _targetMovement;
     private EnemyPathTracingHandler  _pathTracingHandler;
-    private FollowPlayerHandler _followPlayerHandler;
+    private PlayerFollower _playerFollower;
     
     public event Action StopEvent;
     public event Action MovingEvent;
@@ -19,19 +19,21 @@ public class EnemyMovement : MonoBehaviour
     {
         _targetMovement = GetComponent<TargetMovement>();
         _pathTracingHandler = GetComponent<EnemyPathTracingHandler>();
-        _followPlayerHandler = GetComponent<FollowPlayerHandler>();
+        _playerFollower = GetComponent<PlayerFollower>();
     }
 
     private void OnEnable()
     {
         _targetMovement.StopEvent += Stop;
         _targetMovement.StartMovingEvent += StartMoving;
+        _handler.SeePlayerEvent += FollowPlayer;
     }
 
     private void OnDisable()
     {
         _targetMovement.StopEvent -= Stop;
         _targetMovement.StartMovingEvent -= StartMoving;
+        _handler.SeePlayerEvent -= FollowPlayer;
     }
 
     public void Stop()
@@ -42,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
     public void FollowPlayer(Transform player)
     {
         _pathTracingHandler.enabled = false;
-        _followPlayerHandler.FollowPlayer(player);
+        _playerFollower.FollowPlayer(player);
     }
 
     private void StartMoving()

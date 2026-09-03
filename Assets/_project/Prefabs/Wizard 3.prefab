@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 3944934300843473242}
   - component: {fileID: 1048420771644050563}
   - component: {fileID: 5029420027433302576}
+  - component: {fileID: 1584857016416726508}
   m_Layer: 6
   m_Name: Wizard 3
   m_TagString: Untagged
@@ -316,8 +317,9 @@ MonoBehaviour:
     NormalGravityScale: 0
     MaxHealth: 0
     Health: 0
-    AttackDamage: 0
+    AttackDamage: 10
     AttackCooldown: 0
+    AttackDistanse: 1
 --- !u!114 &5486470416988149479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26eaed849e34564fb7c3708ba8071c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovementHandler
-  _handler: {fileID: 0}
+  _handler: {fileID: 6951717311323902799}
 --- !u!114 &3199227648845741876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,3 +416,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6874973538c0cc04585d1833ff37e766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpritesRotator
+--- !u!114 &1584857016416726508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248334508893337024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80ab201219445743b6e7b136bb10e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WizardEnemyAttack
+  _wizardAttackPrefab: {fileID: 3131329694171152814, guid: d44520dc9bf74df499d47b7f5c8295c1, type: 3}

@@ -12,8 +12,9 @@ public class TargetMovement : MonoBehaviour
     [SerializeField] private Enemy _handler;
     
     private float _needMaxDistance;
-    private bool _isOnTarget;
+    private bool _isOnTarget = true;
     private bool _isStoping;
+    private bool _isFollowPlayer;
     private Transform _target;
     private Rigidbody2D _body;
 

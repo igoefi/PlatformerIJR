@@ -14,8 +14,18 @@ public class EnemyPathTracingHandler : MonoBehaviour
     private void Awake()
     {
         _movement = GetComponent<TargetMovement>();
-        _movement.StopEvent += Calmdown;
         _movement.SetTarget(_pathPoints[_pathPointIndex]);
+    }
+
+    private void OnEnable()
+    {
+        _movement.StopEvent += Calmdown;
+    }
+
+    private void OnDisable()
+    {
+        _movement.StopEvent -= Calmdown;
+        StopAllCoroutines();
     }
 
     private void Calmdown()

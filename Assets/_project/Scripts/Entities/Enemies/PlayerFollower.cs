@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(TargetMovement))]
-public class FollowPlayerHandler : MonoBehaviour
+public class PlayerFollower : MonoBehaviour
 {
     private TargetMovement _targetMovement;
 
