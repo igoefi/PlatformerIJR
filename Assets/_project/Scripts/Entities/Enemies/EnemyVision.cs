@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
 {
-    public event Action <Transform> SeePlayerEvent;
-
     [SerializeField] private LayerMask _ignoreLayers;
     [SerializeField] private EnemyVisionCollider _viewField;
+
+    public event Action <Transform> SeePlayerEvent;
 
     private void OnEnable()
     {

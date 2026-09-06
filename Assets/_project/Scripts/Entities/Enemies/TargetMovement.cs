@@ -5,9 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class TargetMovement : MonoBehaviour
 {
-    public event Action StopEvent;
-    public event Action StartMovingEvent;
-    
     [SerializeField] private float _normalMaxDistance;
     [SerializeField] private Enemy _handler;
     
@@ -20,6 +17,9 @@ public class TargetMovement : MonoBehaviour
 
     private Coroutine _stopCoroutine;
     
+    public event Action StopEvent;
+    public event Action StartMovingEvent;
+
     private void Awake() =>
         _body = GetComponent<Rigidbody2D>();
 

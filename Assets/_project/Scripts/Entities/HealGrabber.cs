@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(StatsHandler))]
+[RequireComponent(typeof(Health))]
 public class HealGrabber : MonoBehaviour
 {
-    private StatsHandler _stats;
+    private Health _health;
 
     private void Awake()
     {
-        _stats = GetComponent<StatsHandler>();
+        _health = GetComponent<Health>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -16,6 +16,6 @@ public class HealGrabber : MonoBehaviour
         if (other.TryGetComponent(out Heal heal) == false)
             return;
         
-        _stats.Heal(heal.GetAndDestroy());
+        _health.Heal(heal.GetAndDestroy());
     }
 }

@@ -6,7 +6,7 @@ public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private string _speedVariable;
     [SerializeField] private string _attackVariable;
-    [SerializeField] Enemy _handler;
+    [SerializeField] private Enemy _handler;
     
     private int _speedHash;
     private int _attackHash;

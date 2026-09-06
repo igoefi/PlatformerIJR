@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(StatsHandler))]
 public abstract class Enemy : MonoBehaviour
 {
+    public StatsHandler StatsHandler { get; protected set; }
+    
     public event Action MoveEvent;
     public event Action StopEvent;
     public event Action AttackEvent;
     public event Action<Transform> SeePlayerEvent;
-    
-    public StatsHandler StatsHandler { get; protected set; }
-    
+
     protected void InvokeMoveEvent() =>
         MoveEvent?.Invoke();
     protected void InvokeStopEvent() =>

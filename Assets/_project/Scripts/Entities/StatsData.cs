@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class StatsConfig
+public class StatsData
 {
     [Header("Movement")]
     public float Speed;

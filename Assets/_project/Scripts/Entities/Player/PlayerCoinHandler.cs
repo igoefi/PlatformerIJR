@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerCoinHandler : MonoBehaviour
 {
-    public event Action<int> OnGetCoins;
-    
     private int _coins;
     
     public int Coins => _coins;
+
+    public event Action<int> OnGetCoins;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
