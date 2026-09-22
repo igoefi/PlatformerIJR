@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1048420771644050563}
   - component: {fileID: 5029420027433302576}
   - component: {fileID: 1584857016416726508}
+  - component: {fileID: 7887754931214632665}
   m_Layer: 6
   m_Name: Wizard 3
   m_TagString: Untagged
@@ -315,8 +316,8 @@ MonoBehaviour:
     JumpForce: 0
     FallGravityScale: 0
     NormalGravityScale: 0
-    MaxHealth: 0
-    Health: 0
+    MaxHealth: 100
+    Health: 100
     AttackDamage: 10
     AttackCooldown: 0
     AttackDistanse: 1
@@ -332,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26eaed849e34564fb7c3708ba8071c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovementHandler
-  _handler: {fileID: 6951717311323902799}
 --- !u!114 &3199227648845741876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationHandler
   _speedVariable: Speed
   _attackVariable: Attack
-  _handler: {fileID: 6951717311323902799}
+  _speed: 1
 --- !u!114 &5029420027433302576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,3 +429,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WizardEnemyAttack
   _wizardAttackPrefab: {fileID: 3131329694171152814, guid: d44520dc9bf74df499d47b7f5c8295c1, type: 3}
+--- !u!114 &7887754931214632665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6248334508893337024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051df44217154404f86b108875d138fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health

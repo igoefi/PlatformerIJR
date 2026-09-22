@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Health))]
 public class StatsHandler : MonoBehaviour
 {
-    
     [SerializeField] private StatsData _stats;
     
     public float MaxHealth { get { return _stats.MaxHealth; } }
@@ -15,4 +15,10 @@ public class StatsHandler : MonoBehaviour
     public float FallGravityScale { get { return _stats.FallGravityScale; } }
     public float NormalGravityScale { get { return _stats.NormalGravityScale; } }
     public float AttackDistance { get { return _stats.AttackDistanse; } }
+
+    private void Start()
+    {
+        Health health = GetComponent<Health>();
+        health.SetHealth(_stats.MaxHealth, _stats.Health);
+    }
 }

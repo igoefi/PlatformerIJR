@@ -6,7 +6,7 @@ public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private string _speedVariable;
     [SerializeField] private string _attackVariable;
-    [SerializeField] private Enemy _handler;
+    [SerializeField] private float _speed;
     
     private int _speedHash;
     private int _attackHash;
@@ -20,32 +20,19 @@ public class EnemyAnimator : MonoBehaviour
         _attackHash = Animator.StringToHash(_attackVariable);
     }
 
-    private void OnEnable()
+    public void Run()
     {
-        _handler.MoveEvent += Run;
-        _handler.StopEvent += Stop;
-        _handler.AttackEvent += Attack;
-    }
-
-    private void OnDisable()
-    {
-        _handler.MoveEvent -= Run;
-        _handler.StopEvent -= Stop;
-        _handler.AttackEvent -= Attack;
-    }
-
-    private void Run()
-    {
-        _anim.SetFloat(_speedHash, _handler.StatsHandler.Speed);
+        _anim.SetFloat(_speedHash, _speed);
     }
     
-    private void Stop()
+    public void Stop()
     {
         _anim.SetFloat(_speedHash, 0);
     }
 
-    private void Attack()
+    public void Attack()
     {
+        Stop();
         _anim.SetTrigger(_attackHash);
     }
 }

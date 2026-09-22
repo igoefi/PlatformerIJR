@@ -6,8 +6,6 @@ using UnityEngine;
     typeof(PlayerFollower))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Enemy _handler;
-    
     private TargetMovement _targetMovement;
     private EnemyPathTracingHandler  _pathTracingHandler;
     private PlayerFollower _playerFollower;
@@ -26,14 +24,12 @@ public class EnemyMovement : MonoBehaviour
     {
         _targetMovement.StopEvent += Stop;
         _targetMovement.StartMovingEvent += StartMoving;
-        _handler.SeePlayerEvent += FollowPlayer;
     }
 
     private void OnDisable()
     {
         _targetMovement.StopEvent -= Stop;
         _targetMovement.StartMovingEvent -= StartMoving;
-        _handler.SeePlayerEvent -= FollowPlayer;
     }
 
     public void Stop()

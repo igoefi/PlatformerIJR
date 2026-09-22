@@ -5,20 +5,19 @@ using UnityEngine;
 public class SpritesRotator : MonoBehaviour
 {
     private Rigidbody2D _body;
-    private float _normalXScale;
-
+    private Vector2 _normalRight;
+    
     private void Start()
     {
         _body = GetComponent<Rigidbody2D>();
-        _normalXScale = transform.localScale.x;
+        _normalRight = transform.right;
     }
 
     private void FixedUpdate()
     {
         float velocity = _body.linearVelocityX;
-        
-        if(velocity != 0)
-            transform.localScale = new Vector2(velocity > 0 ? _normalXScale : _normalXScale * -1,
-                transform.localScale.y);
+
+        if (velocity != 0)
+            transform.right = velocity > 0 ? _normalRight : _normalRight * -1;
     }
 }

@@ -2,12 +2,14 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyVision),
-    typeof(EnemyMovement))]
+    typeof(EnemyMovement),
+    typeof(EnemyAnimator))]
 public class WizardEnemy : Enemy
 {
     private EnemyMovement  _movement;
     private EnemyVision _vision;
-
+    private EnemyAnimator _anim;
+    private WizardEnemyAttack _attack;
     private bool _isSeePlayer;
     
     private void Awake()
@@ -15,6 +17,9 @@ public class WizardEnemy : Enemy
         StatsHandler = GetComponent<StatsHandler>();
         _vision = GetComponent<EnemyVision>();
         _movement = GetComponent<EnemyMovement>();
+        _anim = GetComponent<EnemyAnimator>();
+        _attack = GetComponent<WizardEnemyAttack>();
+        _attack.SetDamage(StatsHandler.Damage);
     }
 
     private void OnEnable()
@@ -33,18 +38,19 @@ public class WizardEnemy : Enemy
 
     private void StopMoving()
     {
-        InvokeStopEvent();
-        
         if(_isSeePlayer)
-            InvokeAttackEvent();
+            _anim.Attack();
+        else
+            _anim.Stop();
     }
-    
+
     private void StartMoving() =>
-        InvokeMoveEvent();
+        _anim.Run();
 
     private void SeePLayer(Transform player)
     {
-        InvokeSeePlayerEvent(player);
+        _movement.FollowPlayer(player);
+        _attack.SetPlayer(player);
         _isSeePlayer = true;
     }
 }

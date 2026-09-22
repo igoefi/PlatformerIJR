@@ -4,24 +4,26 @@ using UnityEngine;
 [RequireComponent(typeof(StatsHandler))]
 public class Health : MonoBehaviour, IDamagable
 {
-    private StatsHandler _stats;
-
+    private float _maxHealth;
+    private float _health;
+    
     public event Action DieEvent; 
     public event Action HealEvent;
     public event Action GetDamageEvent;
-    
-    private void Awake()
+
+    public void SetHealth(float maxHealth, float health)
     {
-        _stats = GetComponent<StatsHandler>();
+        _maxHealth = maxHealth;
+        _health = health;
     }
 
     public void TakeDamage(float damage)
     {
-        _stats.Health -= damage;
+        _health -= damage;
         
-        if (_stats.Health <= 0)
+        if (_health <= 0)
         {
-            _stats.Health = 0;
+            _health = 0;
             DieEvent?.Invoke();
             return;
         }
@@ -31,12 +33,10 @@ public class Health : MonoBehaviour, IDamagable
     
     public void Heal(float healAmount)
     {
-        _stats.Health += healAmount;
+        _health += healAmount;
         
-        if (_stats.Health <= 0)
-        {
-            _stats.Health = 0;
-        }
+        if (_health >= _maxHealth)
+            _health = _maxHealth;
         
         HealEvent?.Invoke();
     }
