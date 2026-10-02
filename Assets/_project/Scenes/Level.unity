@@ -8579,6 +8579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8057151536223955077, guid: 4b4a07094cd05d141a8b6bb0e9c55067, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 693041646}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10874,7 +10878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1635572523
 MonoBehaviour:
   m_ObjectHideFlags: 0
