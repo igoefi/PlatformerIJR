@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 8042254269489286065}
   - component: {fileID: 7440213414430767963}
   - component: {fileID: 5832601086254567499}
+  - component: {fileID: 2657976665670146881}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -331,5 +332,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   _ignoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   _attackPoint: {fileID: 5363944029842283559}
+--- !u!114 &2657976665670146881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6175110939773628723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051df44217154404f86b108875d138fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
