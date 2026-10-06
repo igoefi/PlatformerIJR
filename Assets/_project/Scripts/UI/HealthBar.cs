@@ -15,9 +15,12 @@ public class HealthBar : MonoBehaviour
     private float _barFloat = 1;
     private WaitForSeconds _stepTime;
 
-    private void Awake()
+    private void Start()
     {
         _stepTime = new WaitForSeconds(_changeTime);
+        
+        if(_health.HealthCount / _health.MaxHealthCount != 1)
+            SetImage();
     }
 
     private void OnEnable()
