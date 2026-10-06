@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private InputSystem_Actions _input;
 
     public event Action AttackPressed;
+    public event Action VampirizmPressed;
     public event Action JumpPressed;
     public event Action JumpUnpress;
     public event Action<Vector2> MovementPressed;
@@ -24,6 +25,7 @@ public class PlayerInput : MonoBehaviour
         _input.Player.Move.performed += PressMovement;
         _input.Player.Move.canceled += PressMovement;
         _input.Player.Attack.performed += PressAttack;
+        _input.Player.Vampirizm.performed += PressVampirizm;
     }
 
     private void OnDisable()
@@ -33,10 +35,14 @@ public class PlayerInput : MonoBehaviour
         _input.Player.Move.performed -= PressMovement;
         _input.Player.Move.canceled -= PressMovement;
         _input.Player.Attack.performed -= PressAttack;
+        _input.Player.Vampirizm.performed -= PressVampirizm;
     }
     
     private void PressJump(InputAction.CallbackContext _) =>
         JumpPressed?.Invoke();
+    
+    private void PressVampirizm(InputAction.CallbackContext _) =>
+        VampirizmPressed?.Invoke();
 
     private void UnpressJump(InputAction.CallbackContext _) =>
         JumpUnpress?.Invoke();
