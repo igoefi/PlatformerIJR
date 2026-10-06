@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HPBar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Health _health;
     [SerializeField] private Image _image;
@@ -39,7 +39,7 @@ public class HPBar : MonoBehaviour
         if(_barCoroutine != null)
             StopCoroutine(_barCoroutine);
 
-        float value = _health.HealthCount / _health.MaxHealthCount;
+        float value = _health.Count / _health.MaxCount;
         
         if(value == _barFloat)
             return;

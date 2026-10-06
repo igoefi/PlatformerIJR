@@ -20,5 +20,5 @@ public class SimpleHPBar : MonoBehaviour
     }
 
     private void SetImage() =>
-        _image.fillAmount = _health.HealthCount / _health.MaxHealthCount;
+        _image.fillAmount = _health.Count / _health.MaxCount;
 }
