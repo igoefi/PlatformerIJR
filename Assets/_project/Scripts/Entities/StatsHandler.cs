@@ -16,7 +16,7 @@ public class StatsHandler : MonoBehaviour
     public float NormalGravityScale { get { return _stats.NormalGravityScale; } }
     public float AttackDistance { get { return _stats.AttackDistanse; } }
 
-    private void Start()
+    private void Awake()
     {
         Health health = GetComponent<Health>();
         health.SetHealth(_stats.MaxHealth, _stats.Health);
