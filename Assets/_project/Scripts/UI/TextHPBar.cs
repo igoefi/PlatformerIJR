@@ -22,5 +22,5 @@ public class TextHPBar : MonoBehaviour
     }
 
     private void SetText() =>
-        _text.text = $"{_health.HealthCount}/{_health.MaxHealthCount}";
+        _text.text = $"{_health.Count}/{_health.MaxCount}";
 }
