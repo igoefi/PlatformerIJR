@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
     {
         _stepTime = new WaitForSeconds(_changeTime);
         
-        if(_health.HealthCount / _health.MaxHealthCount != 1)
+        if(_health.Count / _health.MaxCount != 1)
             SetImage();
     }
 
