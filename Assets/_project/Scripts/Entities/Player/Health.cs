@@ -30,9 +30,27 @@ public class Health : MonoBehaviour, IDamagable
         
         GetDamageEvent?.Invoke();
     }
+
+    public void TakeDamage(float damage, out float damageTaken)
+    {
+        if (Count - damage <= 0)
+        {
+            damageTaken = Count;
+            Count = 0;
+            DieEvent?.Invoke();
+            return;
+        }
+
+        Count -= damage;
+        damageTaken = damage;
+        GetDamageEvent?.Invoke();
+    }
     
     public void Heal(float healAmount)
     {
+        if (healAmount <= 0)
+            return;
+        
         Count += healAmount;
         
         if (Count >= MaxCount)

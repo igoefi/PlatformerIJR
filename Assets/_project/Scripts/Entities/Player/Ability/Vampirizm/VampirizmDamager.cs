@@ -7,7 +7,7 @@ public class VampirizmDamager : MonoBehaviour
     [SerializeField] private LayerMask _ignoreLayers;
     [SerializeField] private Vector2 _castOffset;
 
-    public bool VampireAttack(float damage, float radius)
+    public bool VampireAttack(float damage, float radius, out float heal)
     {
         RaycastHit2D[] casts = Physics2D.CircleCastAll(new Vector2(transform.position.x, transform.position.y) + _castOffset,  
             radius, Vector2.zero, radius, ~_ignoreLayers);
@@ -15,10 +15,11 @@ public class VampirizmDamager : MonoBehaviour
         foreach (var cast in casts)
             if (cast.transform.gameObject.TryGetComponent(out IDamagable target))
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, out heal);
                 return true;
             }
         
+        heal = 0;
         return false;
     }
 }

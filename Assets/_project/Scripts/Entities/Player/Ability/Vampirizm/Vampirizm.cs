@@ -56,10 +56,8 @@ public class Vampirizm : MonoBehaviour
 
         while (time < _abilityTime)
         {
-            if (_damager.VampireAttack(_damage, _radius))
-            {
-                _health.Heal(_damage);
-            }
+            if (_damager.VampireAttack(_damage, _radius, out float heal))
+                _health.Heal(heal);
             
             yield return _damageWait;
             
