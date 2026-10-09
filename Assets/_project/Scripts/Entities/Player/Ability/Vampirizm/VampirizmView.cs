@@ -5,45 +5,31 @@ using UnityEngine.UI;
 
 public class VampirizmView : MonoBehaviour
 {
-    [SerializeField] private Image _sprite;
+    [SerializeField] private Image _abilityRange;
     [SerializeField] private Image _imageBar;
-    [SerializeField] private float _changeBarPerTime;
+    [SerializeField] private Vampirizm _vampirizm;
 
-    private WaitForSeconds _changeBarWait;
-
-    private void Start()
+    private void OnEnable()
     {
-        _changeBarWait = new WaitForSeconds(_changeBarPerTime);
+        _vampirizm.StartAbility += () => SetAbilityRangeVisible(true);
+        _vampirizm.EndAbility += () => SetAbilityRangeVisible(false);
+        _vampirizm.OnChangeTimeState += SetAbilityBarState;
     }
 
-    public void StartAbility(float time)
+    private void OnDisable()
     {
-        StartCoroutine(IncreaseDecreaseBar(time, true));
-        _sprite.gameObject.SetActive(true);
+        _vampirizm.StartAbility -= () => SetAbilityRangeVisible(true);
+        _vampirizm.EndAbility -= () => SetAbilityRangeVisible(false);
+        _vampirizm.OnChangeTimeState -= SetAbilityBarState;
     }
 
-    public void StartCooldown(float time)
+    public void SetAbilityRangeVisible(bool isVisible)
     {
-        StartCoroutine(IncreaseDecreaseBar(time, false));
-        _sprite.gameObject.SetActive(false);
+        _abilityRange.gameObject.SetActive(isVisible);
     }
 
-    private IEnumerator IncreaseDecreaseBar(float time, bool increase)
+    public void SetAbilityBarState(float value)
     {
-        float value = 0;
-
-        while (value < time)
-        {
-            yield return _changeBarWait;
-            value += _changeBarPerTime;
-            
-            if(value > time)
-                value = time;
-            
-            if(increase) 
-                _imageBar.fillAmount = 1 - value / time;
-            else
-                _imageBar.fillAmount = value / time;
-        }
+        _imageBar.fillAmount = value;
     }
 }

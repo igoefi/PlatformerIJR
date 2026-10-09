@@ -765,9 +765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab63cad5fec35b4d94b026b187b7141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VampirizmView
-  _sprite: {fileID: 6366289214758140581}
+  _abilityRange: {fileID: 6366289214758140581}
   _imageBar: {fileID: 142190938414715599}
-  _changeBarPerTime: 0.1
+  _vampirizm: {fileID: 6762007767818517692}
 --- !u!224 &7851702216170388493 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3173555898998586761, guid: e5f5bef3bf9b5af4ca34726849e7c420, type: 3}

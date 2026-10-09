@@ -20,13 +20,25 @@ public class Vampirizm : MonoBehaviour
     private Coroutine _attackCoroutine;
     private WaitForSeconds _damageWait;
     private WaitForSeconds _cooldownWait;
-    
+
+    public Action<float> OnChangeTimeState;
+    public Action StartAbility;
+    public Action EndAbility;
     
     private void Start()
     {
-        GetComponent<PlayerInput>().VampirizmPressed += StartAttack;
         _damageWait = new WaitForSeconds(_timePerDamage);
         _cooldownWait = new WaitForSeconds(_cooldownTime);
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<PlayerInput>().VampirizmPressed += StartAttack;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<PlayerInput>().VampirizmPressed -= StartAttack;
     }
 
     private void StartAttack()
@@ -37,27 +49,34 @@ public class Vampirizm : MonoBehaviour
         _attackCoroutine = StartCoroutine(AttackCoroutine());
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator AttackCoroutine()
     {
-        _view.StartAbility(_abilityTime);
+        StartAbility?.Invoke();
         float time = 0;
 
-        while (time <= _abilityTime)
+        while (time < _abilityTime)
         {
             if (_damager.VampireAttack(_damage, _radius))
             {
                 _health.Heal(_damage);
-                Debug.Log(1);
             }
-            Debug.Log(2);
             
             yield return _damageWait;
+            
             time += _timePerDamage;
+            OnChangeTimeState?.Invoke(1 - time/_abilityTime);
         }
         
-        _view.StartCooldown(_cooldownTime);
-        yield return _cooldownWait;
+        EndAbility?.Invoke();
+        
+        while (time > 0)
+        {
+            yield return _damageWait;
+            
+            time -= _timePerDamage;
+            OnChangeTimeState?.Invoke(1 - time/_abilityTime);
+        }
+        
         _attackCoroutine = null;
     }
 }
